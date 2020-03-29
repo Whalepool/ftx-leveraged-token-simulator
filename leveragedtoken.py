@@ -6,20 +6,24 @@ import math
 import sys
 
 # This is a simple script to compute the FTX Leveraged Token return for a given day
-# Read the walkthrough from FTX carefully: https://help.ftx.com/hc/en-us/articles/360032509552-Leveraged-Token-Walkthrough-READ-THIS-
+# Read the walkthrough from FTX carefully: 
+#   https://help.ftx.com/hc/en-us/articles/360032509552-Leveraged-Token-Walkthrough-READ-THIS-
 # Every day at 00:02:00 UTC the leveraged token rebalances its leverage to 3x based on any gain (or loss) throughout the day
-# There is also an intra-day rebalance for when the token's underlying has a negative return that brings its effective leverage to 4x
+# There is also an intra-day rebalance for when the token's underlying has a negative return that brings its 
+#    effective leverage to 4x
 # For BULL tokens this is a 11% drop in the underlying, for BEAR tokens this is a 6.5% rise in the underlying
 # Note that there is no longer any rebalance when the underlying has large moves in its favour (up for BULL, down for BEAR)
 
 # This script requires 5 arguments:
 # 1) bull or bear to indicate it is a bull or bear token (3x long, 3x short)
 # 2) start underlying price -- the price of underlying contract at 00:02:00 UTC for the day 0
-# 3) peak / trough intraday price -- this is the lowest price (trough) for BULL tokens or the highest price (peak) for BEAR tokens
+# 3) peak / trough intraday price -- this is the lowest price (trough) for BULL tokens or the highest price (peak) for 
+#    BEAR tokens
 # 4) end underlying price -- the price of underlying contract at 00:02:00 UTC the next day 1
 # 5) token start price -- this is the price of the token at 00:02:00 for day 0
 
-# Example: BULL token for ETH/USD with start underlying price $130, trough price $100, end underlying price $105, and start token price $20
+# Example: BULL token for ETH/USD with start underlying price $130, trough price $81.564, end underlying price $84, 
+#    and start token price $20
 # python3 leveragedtoken.py bull 130 81.564 84 20
 # Start price of underlying: $130
 # Number of rebalances: 4
